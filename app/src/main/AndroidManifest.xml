@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pl.team.sm_project.budgetmanager">
+          package="pl.team.sm_project.budgetmanager">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -10,22 +12,24 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ViewBudget">
+        <activity android:name=".ViewBudget">
         </activity>
-        <activity
-            android:name=".ViewAllBudgets">
+        <activity android:name=".ViewAllBudgets">
         </activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="b76058e882ea80f6022e1accb66dcf00fa6eeabd" />
+            android:value="b76058e882ea80f6022e1accb66dcf00fa6eeabd"/>
+
+        <activity android:name=".ViewAllSources">
+        </activity>
+        <activity android:name=".ViewSource">
+        </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

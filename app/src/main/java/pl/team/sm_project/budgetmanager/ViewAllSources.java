@@ -3,8 +3,8 @@ package pl.team.sm_project.budgetmanager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +21,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItemClickListener {
+public class ViewAllSources extends AppCompatActivity implements ListView.OnItemClickListener {
 
     private ListView list_view;
 
@@ -32,7 +32,7 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_view_all_budgets);
+        setContentView(R.layout.activity_view_all_sources);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -43,7 +43,7 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
     }
 
 
-    private void showBudget() {
+    private void showSource() {
         JSONObject json_object = null;
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
@@ -53,24 +53,27 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
 
             for(int i = 0; i<result.length(); i++){
                 JSONObject budget = result.getJSONObject(i);
-                JSONObject contentObject = budget.getJSONObject(WebConfig.BUDGET_TAG_TYPE);
+                JSONObject contentObject = budget.getJSONObject(WebConfig.SOURCE_TAG_TYPE);
                 String type = contentObject.getString("name");
-                String name = budget.getString(WebConfig.BUDGET_TAG_NAME);
-                String value = budget.getString(WebConfig.BUDGET_TAG_VALUE);
-                String date = budget.getString(WebConfig.BUDGET_TAG_DATE);
-                String comment = budget.getString(WebConfig.BUDGET_TAG_COMMENT);
+                String name = budget.getString(WebConfig.SOURCE_TAG_NAME);
+                String value = budget.getString(WebConfig.SOURCE_TAG_VALUE);
+                String comment = budget.getString(WebConfig.SOURCE_TAG_COMMENT);
 
                 //tymczasowe bezczelne hacki
                 if(comment == "null"){
                     comment = "";
                 }
 
+                if(value == "null"){
+                    value = "";
+                }
+
                 HashMap<String, String> budgets = new HashMap<>();
-                budgets.put(WebConfig.BUDGET_TAG_TYPE, type);
-                budgets.put(WebConfig.BUDGET_TAG_NAME, name);
-                budgets.put(WebConfig.BUDGET_TAG_VALUE, value);
-                budgets.put(WebConfig.BUDGET_TAG_DATE, date);
-                budgets.put(WebConfig.BUDGET_TAG_COMMENT, comment);
+                budgets.put(WebConfig.SOURCE_TAG_TYPE, type);
+                budgets.put(WebConfig.SOURCE_TAG_NAME, name);
+                budgets.put(WebConfig.SOURCE_TAG_VALUE, value);
+                budgets.put(WebConfig.SOURCE_TAG_COMMENT, comment);
+
                 list.add(budgets);
             }
 
@@ -79,9 +82,9 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
         }
 
         ListAdapter adapter = new SimpleAdapter(
-                ViewAllBudgets.this, list, R.layout.budget_list_items,
-                new String[]{WebConfig.BUDGET_TAG_TYPE, WebConfig.BUDGET_TAG_NAME, WebConfig.BUDGET_TAG_VALUE, WebConfig.BUDGET_TAG_DATE, WebConfig.BUDGET_TAG_COMMENT},
-                new int[]{R.id.budget_type, R.id.budget_name, R.id.budget_value, R.id.budget_date, R.id.budget_comment});
+                ViewAllSources.this, list, R.layout.sources_list_items,
+                new String[]{WebConfig.SOURCE_TAG_TYPE, WebConfig.SOURCE_TAG_NAME, WebConfig.SOURCE_TAG_VALUE, WebConfig.SOURCE_TAG_COMMENT},
+                new int[]{R.id.source_type, R.id.source_name, R.id.source_value, R.id.source_comment});
 
         list_view.setAdapter(adapter);
     }
@@ -93,7 +96,7 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewAllBudgets.this,"Fetching Data","Wait...",false,false);
+                loading = ProgressDialog.show(ViewAllSources.this,"Fetching Data","Wait...",false,false);
             }
 
             @Override
@@ -101,13 +104,13 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
                 super.onPostExecute(response);
                 loading.dismiss();
                 json_string = response;
-                showBudget();
+                showSource();
             }
 
             @Override
             protected String doInBackground(Void... parameters) {
                 RequestHandler rh = new RequestHandler();
-                String response = rh.sendGetRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_GET_ALL, "");
+                String response = rh.sendGetRequest(WebConfig.GLOBAL_URL + WebConfig.SOURCE_GET_ALL, "");
                 return response;
             }
         }
@@ -119,8 +122,8 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(this, ViewBudget.class);
         HashMap<String, String> map = (HashMap)parent.getItemAtPosition(position);
-        String budget_id = map.get(WebConfig.BUDGET_TAG_ID);
-        intent.putExtra(WebConfig.BUDGET_ID, budget_id);
+        String source_id = map.get(WebConfig.SOURCE_TAG_ID);
+        intent.putExtra(WebConfig.SOURCE_ID, source_id);
         startActivity(intent);
     }
 
