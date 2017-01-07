@@ -81,8 +81,8 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
             JSONObject jsonObject = new JSONObject(json);
             JSONArray result = jsonObject.getJSONArray(WebConfig.TAG_JSON_ARRAY);
             JSONObject budget = result.getJSONObject(0);
-            String name = budget.getString(WebConfig.TAG_NAME);
-            String date = budget.getString(WebConfig.TAG_DATE);
+            String name = budget.getString(WebConfig.BUDGET_TAG_NAME);
+            String date = budget.getString(WebConfig.BUDGET_TAG_DATE);
 
             edit_text_name.setText(name);
             edit_text_date.setText(date);

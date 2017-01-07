@@ -35,10 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edit_text_password = (EditText) findViewById(R.id.editTextPassword);
 
         button_login = (Button) findViewById(R.id.buttonLogin);
-        button_view = (Button) findViewById(R.id.buttonView);
-
         button_login.setOnClickListener(this);
-        button_view.setOnClickListener(this);
     }
 
     @Override
@@ -62,10 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v == button_login){
             return;
-        }
-
-        if(v == button_view){
-            startActivity(new Intent(this, ViewAllBudgets.class));
         }
     }
 }

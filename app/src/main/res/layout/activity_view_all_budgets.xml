@@ -13,20 +13,20 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-
-
+        <include layout="@layout/toolbar" />
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_view_all_budgets"/>
+    <include layout="@layout/content_view_all_budgets"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/budget_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
         android:layout_gravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_menu_add"/>
+        app:srcCompat="@android:drawable/ic_menu_add"
+        app:backgroundTint="@color/colorAccent"/>
 
 </android.support.design.widget.CoordinatorLayout>

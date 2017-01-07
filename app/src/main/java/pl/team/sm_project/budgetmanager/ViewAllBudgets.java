@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -51,12 +53,17 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
 
             for(int i = 0; i<result.length(); i++){
                 JSONObject budget = result.getJSONObject(i);
-                String id = budget.getString(WebConfig.TAG_ID);
-                String name = budget.getString(WebConfig.TAG_NAME);
+                JSONObject contentObject = budget.getJSONObject(WebConfig.BUDGET_TAG_TYPE);
+                String type = contentObject.getString("name");
+                String name = budget.getString(WebConfig.BUDGET_TAG_NAME);
+                String value = budget.getString(WebConfig.BUDGET_TAG_VALUE);
+                String date = budget.getString(WebConfig.BUDGET_TAG_DATE);
 
                 HashMap<String, String> budgets = new HashMap<>();
-                budgets.put(WebConfig.TAG_ID, id);
-                budgets.put(WebConfig.TAG_NAME, name);
+                budgets.put(WebConfig.BUDGET_TAG_TYPE, type);
+                budgets.put(WebConfig.BUDGET_TAG_NAME, name);
+                budgets.put(WebConfig.BUDGET_TAG_VALUE, value);
+                budgets.put(WebConfig.BUDGET_TAG_DATE, date);
                 list.add(budgets);
             }
 
@@ -66,8 +73,8 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
 
         ListAdapter adapter = new SimpleAdapter(
                 ViewAllBudgets.this, list, R.layout.list_item,
-                new String[]{WebConfig.TAG_ID, WebConfig.TAG_NAME},
-                new int[]{R.id.id, R.id.name});
+                new String[]{WebConfig.BUDGET_TAG_TYPE, WebConfig.BUDGET_TAG_NAME, WebConfig.BUDGET_TAG_VALUE, WebConfig.BUDGET_TAG_DATE},
+                new int[]{R.id.type, R.id.name, R.id.value, R.id.date});
 
         list_view.setAdapter(adapter);
     }
@@ -105,8 +112,24 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(this, ViewBudget.class);
         HashMap<String, String> map = (HashMap)parent.getItemAtPosition(position);
-        String budget_id = map.get(WebConfig.TAG_ID);
+        String budget_id = map.get(WebConfig.BUDGET_TAG_ID);
         intent.putExtra(WebConfig.BUDGET_ID, budget_id);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.action_budgets) {
+            startActivity(new Intent(this, ViewAllBudgets.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
