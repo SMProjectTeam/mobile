@@ -26,7 +26,6 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
     private ListView list_view;
 
     private String json_string;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,7 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
 
         setContentView(R.layout.activity_view_all_sources);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         list_view = (ListView) findViewById(R.id.listView);
@@ -44,8 +43,8 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
 
 
     private void showSource() {
-        JSONObject json_object = null;
-        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+        JSONObject json_object;
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
 
         try {
             json_object = new JSONObject(json_string);
@@ -59,7 +58,7 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
                 String value = budget.getString(WebConfig.SOURCE_TAG_VALUE);
                 String comment = budget.getString(WebConfig.SOURCE_TAG_COMMENT);
 
-                //tymczasowe bezczelne hacki
+                //FIXME: tymczasowe bezczelne hacki
                 if(comment == "null"){
                     comment = "";
                 }
@@ -110,8 +109,8 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
             @Override
             protected String doInBackground(Void... parameters) {
                 RequestHandler rh = new RequestHandler();
-                String response = rh.sendGetRequest(WebConfig.GLOBAL_URL + WebConfig.SOURCE_GET_ALL, "");
-                return response;
+
+                return rh.sendGetRequest(WebConfig.GLOBAL_URL + WebConfig.SOURCE_GET_ALL, "");
             }
         }
         GetJSON get_json_task = new GetJSON();

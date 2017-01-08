@@ -15,13 +15,8 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText edit_text_email;
-    private EditText edit_text_password;
-
     private Button button_login;
     private Button button_view;
-
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +24,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        edit_text_email = (EditText) findViewById(R.id.editTextEmail);
-        edit_text_password = (EditText) findViewById(R.id.editTextPassword);
+        EditText edit_text_email = (EditText) findViewById(R.id.editTextEmail);
+        EditText edit_text_password = (EditText) findViewById(R.id.editTextPassword);
 
         button_login = (Button) findViewById(R.id.buttonLogin);
         button_login.setOnClickListener(this);
@@ -52,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(id == R.id.action_budgets) {
             startActivity(new Intent(this, ViewAllBudgets.class));
         }
+        
         return super.onOptionsItemSelected(item);
     }
 
@@ -59,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == button_login){
-            return;
         }
     }
 }

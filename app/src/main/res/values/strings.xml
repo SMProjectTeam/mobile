@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">Budget Manager</string>
-    <string name="title_activity_view_all_budgets">VIew all budgets</string>
+    <string name="title_activity_view_all_budgets">View all budgets</string>
 
     <string name="budgets_action">Budgets</string>
     <string name="sources_action">Sources</string>
     <string name="graphs_action">Graphs</string>
     <string name="logout_action">Logout</string>
+    <string name="budget_name">Budget Name</string>
+    <string name="date">Date</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="update_budget">Update Budget</string>
+    <string name="delete_budget">Delete budget</string>
 </resources>

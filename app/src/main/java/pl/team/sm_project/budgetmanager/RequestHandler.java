@@ -15,7 +15,7 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class RequestHandler {
+class RequestHandler {
 
     public String sendPostRequest(String requestURL, HashMap<String, String> postData, String parameters) {
         URL url;
@@ -71,11 +71,13 @@ public class RequestHandler {
 
             String buffer;
             while((buffer = buffered_reader.readLine()) != null) {
-                string_builder.append(buffer + "\n");
+                string_builder.append(buffer).append("\n");
             }
         }
         catch(Exception e){
+            e.printStackTrace();
         }
+
         return string_builder.toString();
     }
 
