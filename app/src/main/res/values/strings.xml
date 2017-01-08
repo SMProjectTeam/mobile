@@ -13,4 +13,5 @@
     <string name="email">Email</string>
     <string name="update_budget">Update Budget</string>
     <string name="delete_budget">Delete budget</string>
+    <string name="pick_date">Chose date</string>
 </resources>
