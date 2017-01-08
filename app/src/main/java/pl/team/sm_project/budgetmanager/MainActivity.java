@@ -47,10 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(id == R.id.action_budgets) {
             startActivity(new Intent(this, ViewAllBudgets.class));
         }
-        
+
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onClick(View v) {
