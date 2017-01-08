@@ -55,6 +55,7 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
                 JSONObject budget = result.getJSONObject(i);
                 JSONObject contentObject = budget.getJSONObject(WebConfig.BUDGET_TAG_TYPE);
                 String type = contentObject.getString("name");
+                String id = budget.getString(WebConfig.BUDGET_TAG_ID);
                 String name = budget.getString(WebConfig.BUDGET_TAG_NAME);
                 String value = budget.getString(WebConfig.BUDGET_TAG_VALUE);
                 String date = budget.getString(WebConfig.BUDGET_TAG_DATE);
@@ -66,6 +67,7 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
                 }
 
                 HashMap<String, String> budgets = new HashMap<>();
+                budgets.put(WebConfig.BUDGET_TAG_ID, id);
                 budgets.put(WebConfig.BUDGET_TAG_TYPE, type);
                 budgets.put(WebConfig.BUDGET_TAG_NAME, name);
                 budgets.put(WebConfig.BUDGET_TAG_VALUE, value);
@@ -80,8 +82,8 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
 
         ListAdapter adapter = new SimpleAdapter(
                 ViewAllBudgets.this, list, R.layout.budget_list_items,
-                new String[]{WebConfig.BUDGET_TAG_TYPE, WebConfig.BUDGET_TAG_NAME, WebConfig.BUDGET_TAG_VALUE, WebConfig.BUDGET_TAG_DATE, WebConfig.BUDGET_TAG_COMMENT},
-                new int[]{R.id.budget_type, R.id.budget_name, R.id.budget_value, R.id.budget_date, R.id.budget_comment});
+                new String[]{WebConfig.BUDGET_TAG_ID ,WebConfig.BUDGET_TAG_TYPE, WebConfig.BUDGET_TAG_NAME, WebConfig.BUDGET_TAG_VALUE, WebConfig.BUDGET_TAG_DATE, WebConfig.BUDGET_TAG_COMMENT},
+                new int[]{R.id.budget_id, R.id.budget_type, R.id.budget_name, R.id.budget_value, R.id.budget_date, R.id.budget_comment});
 
         list_view.setAdapter(adapter);
     }

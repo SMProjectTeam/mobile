@@ -1,32 +1,41 @@
 package pl.team.sm_project.budgetmanager;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class ViewBudget extends AppCompatActivity implements View.OnClickListener {
 
     private EditText edit_text_name;
-    private EditText edit_text_date;
+    private TextView edit_text_date;
+    private EditText edit_text_value;
 
     private Button button_update;
     private Button button_delete;
 
     private String id;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +47,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
         id = intent.getStringExtra(WebConfig.BUDGET_ID);
 
         edit_text_name = (EditText) findViewById(R.id.editTextName);
-        edit_text_date = (EditText) findViewById(R.id.editTextDate);
+        edit_text_date = (TextView) findViewById(R.id.editTextDate);
 
         button_update = (Button) findViewById(R.id.buttonUpdate);
         button_delete = (Button) findViewById(R.id.buttonDelete);
@@ -132,7 +141,8 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
 
     private void updateBudget() {
         final String name = edit_text_name.getText().toString().trim();
-        final String date = edit_text_date.getText().toString().trim();
+//        final String date = edit_text_date.getText().toString().trim();
+        final String value = edit_text_value.getText().toString().trim();
 
         class UpdateBudget extends AsyncTask<Void, Void, String>{
             ProgressDialog loading;
@@ -155,7 +165,9 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                 HashMap<String, String> hash_map = new HashMap<>();
                 hash_map.put(WebConfig.KEY_BUDGET_ID, id);
                 hash_map.put(WebConfig.KEY_BUDGET_NAME, name);
-                hash_map.put(WebConfig.KEY_BUDGET_DATE, date);
+                //hash_map.put(WebConfig.KEY_BUDGET_DATE, date);
+                hash_map.put(WebConfig.KEY_BUDGET_TYPE, type);
+                hash_map.put(WebConfig.KEY_BUDGET_VALUE, value);
 
                 RequestHandler request_handler = new RequestHandler();
 
@@ -236,4 +248,44 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
             confirmDelete();
         }
     }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch(view.getId()) {
+            case R.id.radio_income:
+                if (checked)
+                    type = WebConfig.INCOME_ID;
+                    break;
+            case R.id.radio_expense:
+                if (checked)
+                    type = WebConfig.EXPENSE_ID;
+                    break;
+        }
+    }
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+
+        }
+    }
+
 }

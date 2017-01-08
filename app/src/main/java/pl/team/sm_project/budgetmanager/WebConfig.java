@@ -43,6 +43,9 @@ public class WebConfig {
     public static final String BUDGET_TAG_SOURCE = "source";
     public static final String BUDGET_TAG_COMMENT = "comment";
 
+    public static final String INCOME_ID = "1";
+    public static final String EXPENSE_ID = "2";
+
     public static final String SOURCE_TAG_ID = "id";
     public static final String SOURCE_TAG_NAME = "name";
     public static final String SOURCE_TAG_DATE = "date";
