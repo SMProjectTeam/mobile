@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Budget Manager</string>
+    <string name="date">Data</string>
+    <string name="email">Email</string>
+    <string name="graphs_action">Statystyki</string>
+    <string name="login">Login</string>
+    <string name="logout_action">Wyloguj</string>
+    <string name="password">Hasło</string>
+    <string name="delete_budget">Usuń budżet</string>
+    <string name="budgets_action">Budżety</string>
+    <string name="budget_name">Nazwa budżetu</string>
+    <string name="sources_action">Źródła</string>
+    <string name="update_budget">Aktualizuj budżet</string>
+    <string name="title_activity_view_all_budgets">Zobacz wszystkie budżety</string>
+</resources>

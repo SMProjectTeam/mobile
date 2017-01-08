@@ -1,7 +1,7 @@
 package pl.team.sm_project.budgetmanager;
 
 
-public class WebConfig {
+class WebConfig {
 
     public static final String GLOBAL_URL = "http://192.168.1.139:8000"; //domena aplikacji
 

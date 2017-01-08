@@ -77,8 +77,8 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler request_handler = new RequestHandler();
-                String response = request_handler.sendGetRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_GET, id);
-                return response;
+
+                return request_handler.sendGetRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_GET, id);
             }
         }
         GetBudget get_budget_task = new GetBudget();
@@ -171,9 +171,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
 
                 RequestHandler request_handler = new RequestHandler();
 
-                String response = request_handler.sendPostRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_UPDATE, hash_map, id);
-
-                return response;
+                return request_handler.sendPostRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_UPDATE, hash_map, id);
             }
         }
 
@@ -204,8 +202,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                 HashMap<String, String> hash_map = new HashMap<>();
                 hash_map.put(WebConfig.KEY_BUDGET_ID,id);
 
-                String response = request_handler.sendPostRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_DELETE, hash_map, id);
-                return response;
+                return request_handler.sendPostRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_DELETE, hash_map, id);
             }
         }
 

@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Budget Name" />
+        android:text="@string/budget_name" />
 
     <EditText
         android:layout_width="match_parent"
@@ -20,9 +20,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date" />
+        android:text="@string/date" />
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editTextDate" />
@@ -30,62 +30,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pick_date"
-        android:onClick="showDatePickerDialog" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Value" />
-
-    <EditText
-        android:inputType="numberDecimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextValue" />
-
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-        <RadioButton android:id="@+id/radio_income"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="Przychód"
-                     android:onClick="onRadioButtonClicked"/>
-        <RadioButton android:id="@+id/radio_expense"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="Wydatek"
-                     android:onClick="onRadioButtonClicked"/>
-    </RadioGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Comment" />
-
-    <EditText
-        android:inputType="textMultiLine"
-        android:lines="8"
-        android:minLines="6"
-        android:gravity="top|left"
-        android:maxLines="10"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:scrollbars="vertical"
-        android:id="@+id/editTextComment"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Update Budget"
+        android:text="@string/update_budget"
         android:id="@+id/buttonUpdate" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete budget"
+        android:text="@string/delete_budget"
         android:id="@+id/buttonDelete" />
 
 </LinearLayout>
