@@ -10,11 +10,15 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,12 +34,15 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
     private EditText edit_text_name;
     private TextView edit_text_date;
     private EditText edit_text_value;
+    private Spinner edit_spiner_source;
 
     private Button button_update;
     private Button button_delete;
 
     private String id;
     private String type;
+    private String date;
+    private String[] sources;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,10 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
 
         edit_text_name = (EditText) findViewById(R.id.editTextName);
         edit_text_date = (TextView) findViewById(R.id.editTextDate);
+
+//      edit_spiner_source = (Spinner)findViewById(R.id.editBudgetSource);
+//      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sources);
+//      edit_spiner_source.setAdapter(adapter);
 
         button_update = (Button) findViewById(R.id.buttonUpdate);
         button_delete = (Button) findViewById(R.id.buttonDelete);
@@ -141,7 +152,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
 
     private void updateBudget() {
         final String name = edit_text_name.getText().toString().trim();
-//        final String date = edit_text_date.getText().toString().trim();
+        //final String date = edit_text_date.getText().toString().trim();
         final String value = edit_text_value.getText().toString().trim();
 
         class UpdateBudget extends AsyncTask<Void, Void, String>{
