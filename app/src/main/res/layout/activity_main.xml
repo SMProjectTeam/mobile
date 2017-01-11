@@ -13,6 +13,14 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView"
+            android:background="@color/colorAccent"
+            android:scaleType="centerCrop" />
+
         <include layout="@layout/toolbar" />
     </android.support.design.widget.AppBarLayout>
 
