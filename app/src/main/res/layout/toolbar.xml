@@ -2,7 +2,9 @@
 
 <android.support.v7.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorAccent"
-    android:id="@+id/toolbar" />
+    android:id="@+id/toolbar"
+    android:elevation="1dp" />

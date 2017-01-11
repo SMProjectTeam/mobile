@@ -27,6 +27,6 @@
         android:layout_height="66dp"
         android:layout_gravity="bottom|end"
         app:srcCompat="@android:drawable/ic_menu_add"
-        app:backgroundTint="@color/colorAccent"/>
+        app:backgroundTint="@color/colorAccent" />
 
 </android.support.design.widget.CoordinatorLayout>
