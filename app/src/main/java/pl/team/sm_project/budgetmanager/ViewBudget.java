@@ -55,6 +55,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
 
         edit_text_name = (EditText) findViewById(R.id.editTextName);
         edit_text_date = (TextView) findViewById(R.id.editTextDate);
+        edit_text_value = (EditText) findViewById(R.id.editTextValue);
 
 //      edit_spiner_source = (Spinner)findViewById(R.id.editBudgetSource);
 //      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sources);
@@ -152,7 +153,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
 
     private void updateBudget() {
         final String name = edit_text_name.getText().toString().trim();
-        //final String date = edit_text_date.getText().toString().trim();
+        final String date = edit_text_date.getText().toString().trim();
         final String value = edit_text_value.getText().toString().trim();
 
         class UpdateBudget extends AsyncTask<Void, Void, String>{
