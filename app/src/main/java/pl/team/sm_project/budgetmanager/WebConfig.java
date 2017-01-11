@@ -3,7 +3,7 @@ package pl.team.sm_project.budgetmanager;
 
 class WebConfig {
 
-    public static final String GLOBAL_URL = "http://budgetmanager.it-maniak.pl"; //domena aplikacji
+    public static final String GLOBAL_URL = "http://192.168.1.139:8000"; //domena aplikacji
 
     public static final String BUDGET_GET_ALL = "/api/budgets";
     public static final String BUDGET_ADD ="/api/budget/add";

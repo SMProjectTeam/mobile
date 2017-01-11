@@ -12,12 +12,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +29,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 public class ViewBudget extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,8 +46,10 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
 
     private String id;
     private String type;
-    private String date;
-    private String[] sources;
+    private String source_id;
+
+    private List<String> sources_names = new ArrayList<String>();
+    private List<String> sources_ids = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +61,25 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
         id = intent.getStringExtra(WebConfig.BUDGET_ID);
 
         edit_text_name = (EditText) findViewById(R.id.editTextName);
-        edit_text_date = (TextView) findViewById(R.id.editTextDate);
+        edit_text_date = (EditText) findViewById(R.id.editTextDate);
         edit_text_value = (EditText) findViewById(R.id.editTextValue);
 
-//      edit_spiner_source = (Spinner)findViewById(R.id.editBudgetSource);
-//      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sources);
-//      edit_spiner_source.setAdapter(adapter);
+        edit_spiner_source = (Spinner)findViewById(R.id.editBudgetSource);
+        getSources();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sources_names);
+        edit_spiner_source.setAdapter(adapter);
+        edit_spiner_source.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                 source_id = sources_ids.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+        });
+
 
         button_update = (Button) findViewById(R.id.buttonUpdate);
         button_delete = (Button) findViewById(R.id.buttonDelete);
@@ -111,6 +131,52 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void getSources() {
+        class GetSources extends AsyncTask<Void, Void, String> {
+
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(ViewBudget.this,"Fetching Data","Wait...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String response) {
+                super.onPostExecute(response);
+                loading.dismiss();
+                String json_string = response;
+                JSONObject json_object;
+
+                try {
+                    json_object = new JSONObject(json_string);
+                    JSONArray result = json_object.getJSONArray(WebConfig.TAG_JSON_ARRAY);
+
+                    for(int i = 0; i<result.length(); i++){
+                        JSONObject budget = result.getJSONObject(i);
+                        String id = budget.getString(WebConfig.SOURCE_TAG_ID);
+                        String name = budget.getString(WebConfig.SOURCE_TAG_NAME);
+                        sources_ids.add(id);
+                        sources_names.add(name);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            protected String doInBackground(Void... parameters) {
+                RequestHandler rh = new RequestHandler();
+
+                return rh.sendGetRequest(WebConfig.GLOBAL_URL + WebConfig.SOURCE_GET_ALL, "");
+            }
+        }
+        GetSources get_json_task = new GetSources();
+        get_json_task.execute();
     }
 
     private void addBudget() {
@@ -177,10 +243,16 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                 HashMap<String, String> hash_map = new HashMap<>();
                 hash_map.put(WebConfig.KEY_BUDGET_ID, id);
                 hash_map.put(WebConfig.KEY_BUDGET_NAME, name);
-                //hash_map.put(WebConfig.KEY_BUDGET_DATE, date);
+                hash_map.put(WebConfig.KEY_BUDGET_DATE, date);
                 hash_map.put(WebConfig.KEY_BUDGET_TYPE, type);
                 hash_map.put(WebConfig.KEY_BUDGET_VALUE, value);
-
+                hash_map.put(WebConfig.KEY_BUDGET_SOURCE, source_id);
+                Log.v(WebConfig.KEY_BUDGET_ID, id);
+                Log.v(WebConfig.KEY_BUDGET_NAME, name);
+                Log.v(WebConfig.KEY_BUDGET_DATE, date);
+                Log.v(WebConfig.KEY_BUDGET_SOURCE, source_id);
+                Log.v(WebConfig.KEY_BUDGET_VALUE, value);
+                Log.v(WebConfig.KEY_BUDGET_TYPE, type);
                 RequestHandler request_handler = new RequestHandler();
 
                 return request_handler.sendPostRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_UPDATE, hash_map, id);
@@ -274,27 +346,30 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
     }
 
     public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+        showDatePicker();
     }
 
-    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    private void showDatePicker() {
+        DatePickerFragment date = new DatePickerFragment();
+        Calendar calender = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calender.get(Calendar.YEAR));
+        args.putInt("month", calender.get(Calendar.MONTH));
+        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
 
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-
-        }
+        date.setCallBack(ondate);
+        date.show(getFragmentManager(), "Date Picker");
     }
+
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            edit_text_date.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)
+                    + "-" + String.valueOf(year));
+        }
+    };
 
 }

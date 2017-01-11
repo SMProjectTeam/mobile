@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         EditText edit_text_email = (EditText) findViewById(R.id.editTextEmail);
         EditText edit_text_password = (EditText) findViewById(R.id.editTextPassword);

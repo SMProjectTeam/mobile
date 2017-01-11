@@ -35,6 +35,7 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         list_view = (ListView) findViewById(R.id.listView);
         list_view.setOnItemClickListener(this);
