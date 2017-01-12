@@ -14,4 +14,10 @@
     <string name="update_budget">Aktualizuj budżet</string>
     <string name="title_activity_view_all_budgets">Zobacz wszystkie budżety</string>
     <string name="pick_date">Wybierz datę</string>
+    <string name="comment">Komentarz</string>
+    <string name="delete_source">Usuń źródło</string>
+    <string name="name">Nazwa</string>
+    <string name="type">Typ</string>
+    <string name="update_source">Aktualizuj źródło</string>
+    <string name="value">Wartość</string>
 </resources>

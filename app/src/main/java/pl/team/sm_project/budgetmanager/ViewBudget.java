@@ -42,8 +42,8 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
     private String type_id;
     private String source_id;
 
-    private final List<String> sources_names = new ArrayList<String>();
-    private final List<String> sources_ids = new ArrayList<String>();
+    private final List<String> sources_names = new ArrayList<>();
+    private final List<String> sources_ids = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
 
         Spinner edit_spiner_source = (Spinner) findViewById(R.id.editBudgetSource);
         getSources();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sources_names);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, sources_names);
         edit_spiner_source.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -141,6 +141,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                 super.onPostExecute(response);
                 loading.dismiss();
                 JSONObject json_object;
+                String json_string = response;
 
                 try {
                     json_object = new JSONObject(json_string);
@@ -353,7 +354,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
         date.show(getFragmentManager(), "Date Picker");
     }
 
-    final DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+    private final DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
             edit_text_date.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)

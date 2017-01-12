@@ -3,7 +3,6 @@ package pl.team.sm_project.budgetmanager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,8 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
-        EditText edit_text_email = (EditText) findViewById(R.id.editTextEmail);
-        EditText edit_text_password = (EditText) findViewById(R.id.editTextPassword);
+        //EditText edit_text_email = (EditText) findViewById(R.id.editTextEmail);
+        //EditText edit_text_password = (EditText) findViewById(R.id.editTextPassword);
 
         button_login = (Button) findViewById(R.id.buttonLogin);
         button_login.setOnClickListener(this);
