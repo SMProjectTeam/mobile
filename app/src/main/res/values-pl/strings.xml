@@ -22,4 +22,11 @@
     <string name="value">Wartość</string>
     <string name="przych_d">Przychód</string>
     <string name="wydatek">Wydatek</string>
+    <string name="adding">Dodawanie...</string>
+    <string name="Delete_confirm">Czy na pewno chcesz usunąć ten rekord?</string>
+    <string name="fetching">Wypełnianie...</string>
+    <string name="no">Nie</string>
+    <string name="updating">Aktualizowanie...</string>
+    <string name="wait">Czekaj...</string>
+    <string name="yes">Tak</string>
 </resources>

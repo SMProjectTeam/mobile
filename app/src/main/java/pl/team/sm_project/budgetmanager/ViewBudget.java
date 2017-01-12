@@ -89,7 +89,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewBudget.this,"Fetching...","Wait...",false,false);
+                loading = ProgressDialog.show(ViewBudget.this, getString(R.string.fetching), getString(R.string.wait), false, false);
             }
 
             @Override
@@ -133,7 +133,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewBudget.this,"Fetching Data","Wait...",false,false);
+                loading = ProgressDialog.show(ViewBudget.this, getString(R.string.fetching), getString(R.string.wait), false, false);
             }
 
             @Override
@@ -183,7 +183,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewBudget.this, "Adding...", "Wait...", false, false);
+                loading = ProgressDialog.show(ViewBudget.this, getString(R.string.adding), getString(R.string.wait), false, false);
             }
 
             @Override
@@ -219,7 +219,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewBudget.this, "Updating...", "Wait...", false, false);
+                loading = ProgressDialog.show(ViewBudget.this, getString(R.string.updating), getString(R.string.wait), false, false);
             }
 
             @Override
@@ -261,7 +261,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewBudget.this, "Updating...", "Wait...", false, false);
+                loading = ProgressDialog.show(ViewBudget.this, getString(R.string.updating), getString(R.string.wait), false, false);
             }
 
             @Override
@@ -287,9 +287,9 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
 
     private void confirmDelete() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to delete this record?");
+        alertDialogBuilder.setMessage(getString(R.string.Delete_confirm));
 
-        alertDialogBuilder.setPositiveButton("Yes",
+        alertDialogBuilder.setPositiveButton(getString(R.string.yes),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -298,7 +298,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                     }
                 });
 
-        alertDialogBuilder.setNegativeButton("No",
+        alertDialogBuilder.setNegativeButton(getString(R.string.no),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {

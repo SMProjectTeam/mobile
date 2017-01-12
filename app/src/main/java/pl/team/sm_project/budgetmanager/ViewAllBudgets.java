@@ -95,7 +95,7 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewAllBudgets.this,"Fetching Data","Wait...",false,false);
+                loading = ProgressDialog.show(ViewAllBudgets.this, getString(R.string.fetching), getString(R.string.wait), false, false);
             }
 
             @Override

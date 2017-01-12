@@ -96,7 +96,7 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewAllSources.this,"Fetching Data","Wait...",false,false);
+                loading = ProgressDialog.show(ViewAllSources.this, getString(R.string.fetching), getString(R.string.wait), false, false);
             }
 
             @Override

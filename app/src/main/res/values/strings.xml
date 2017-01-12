@@ -22,4 +22,11 @@
     <string name="delete_source">Delete source</string>
     <string name="przych_d">Income</string>
     <string name="wydatek">Expense</string>
+    <string name="Delete_confirm">Are you sure you want to delete this record?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="updating">Updating...</string>
+    <string name="wait">Wait...</string>
+    <string name="fetching">Fetching...</string>
+    <string name="adding">Adding...</string>
 </resources>

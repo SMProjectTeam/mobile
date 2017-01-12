@@ -57,7 +57,7 @@ public class ViewSource extends AppCompatActivity implements View.OnClickListene
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewSource.this,"Fetching...","Wait...",false,false);
+                loading = ProgressDialog.show(ViewSource.this, getString(R.string.fetching), getString(R.string.wait), false, false);
             }
 
             @Override
@@ -102,7 +102,7 @@ public class ViewSource extends AppCompatActivity implements View.OnClickListene
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewSource.this, "Updating...", "Wait...", false, false);
+                loading = ProgressDialog.show(ViewSource.this, getString(R.string.updating), getString(R.string.wait), false, false);
             }
 
             @Override
@@ -136,7 +136,7 @@ public class ViewSource extends AppCompatActivity implements View.OnClickListene
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(ViewSource.this, "Updating...", "Wait...", false, false);
+                loading = ProgressDialog.show(ViewSource.this, getString(R.string.updating), getString(R.string.wait), false, false);
             }
 
             @Override
@@ -162,9 +162,9 @@ public class ViewSource extends AppCompatActivity implements View.OnClickListene
 
     private void confirmDelete() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to delete this record?");
+        alertDialogBuilder.setMessage(R.string.Delete_confirm);
 
-        alertDialogBuilder.setPositiveButton("Yes",
+        alertDialogBuilder.setPositiveButton(R.string.yes,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -173,7 +173,7 @@ public class ViewSource extends AppCompatActivity implements View.OnClickListene
                     }
                 });
 
-        alertDialogBuilder.setNegativeButton("No",
+        alertDialogBuilder.setNegativeButton(R.string.no,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
