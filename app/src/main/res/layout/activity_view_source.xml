@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name" />
+        android:text="@string/name" />
 
     <EditText
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Value" />
+        android:text="@string/value" />
 
     <EditText
         android:inputType="numberDecimal"
@@ -34,7 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type" />
+        android:text="@string/type" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
@@ -56,7 +56,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comment" />
+        android:text="@string/comment" />
 
     <EditText
         android:inputType="textMultiLine"
@@ -72,14 +72,14 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update source"
+        android:text="@string/update_source"
         android:id="@+id/buttonSourceUpdate" />
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete source"
+        android:text="@string/delete_source"
         android:id="@+id/buttonSourceDelete" />
 
 </LinearLayout>

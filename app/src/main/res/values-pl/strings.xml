@@ -13,4 +13,5 @@
     <string name="sources_action">Źródła</string>
     <string name="update_budget">Aktualizuj budżet</string>
     <string name="title_activity_view_all_budgets">Zobacz wszystkie budżety</string>
+    <string name="pick_date">Wybierz datę</string>
 </resources>

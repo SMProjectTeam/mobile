@@ -16,7 +16,6 @@ import io.fabric.sdk.android.Fabric;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button button_login;
-    private Button button_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

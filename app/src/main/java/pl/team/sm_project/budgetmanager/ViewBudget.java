@@ -34,7 +34,6 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
     private EditText edit_text_name;
     private TextView edit_text_date;
     private EditText edit_text_value;
-    private Spinner edit_spiner_source;
 
     private Button button_update;
     private Button button_delete;
@@ -43,8 +42,8 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
     private String type_id;
     private String source_id;
 
-    private List<String> sources_names = new ArrayList<String>();
-    private List<String> sources_ids = new ArrayList<String>();
+    private final List<String> sources_names = new ArrayList<String>();
+    private final List<String> sources_ids = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +58,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
         edit_text_date = (EditText) findViewById(R.id.editTextDate);
         edit_text_value = (EditText) findViewById(R.id.editTextValue);
 
-        edit_spiner_source = (Spinner)findViewById(R.id.editBudgetSource);
+        Spinner edit_spiner_source = (Spinner) findViewById(R.id.editBudgetSource);
         getSources();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sources_names);
         edit_spiner_source.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -141,7 +140,6 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
             protected void onPostExecute(String response) {
                 super.onPostExecute(response);
                 loading.dismiss();
-                String json_string = response;
                 JSONObject json_object;
 
                 try {
@@ -201,8 +199,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                 parameters.put(WebConfig.KEY_BUDGET_DATE, date);
 
                 RequestHandler request_handler = new RequestHandler();
-                String response = request_handler.sendPostRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_ADD, parameters, null);
-                return response;
+                return request_handler.sendPostRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_ADD, parameters, null);
             }
         }
 
@@ -356,7 +353,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
         date.show(getFragmentManager(), "Date Picker");
     }
 
-    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+    final DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
             edit_text_date.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)

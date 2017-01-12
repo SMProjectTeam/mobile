@@ -13,5 +13,11 @@
     <string name="email">Email</string>
     <string name="update_budget">Update Budget</string>
     <string name="delete_budget">Delete budget</string>
-    <string name="pick_date">Chose date</string>
+    <string name="pick_date">Choose date</string>
+    <string name="name">Name</string>
+    <string name="value">Value</string>
+    <string name="type">Type</string>
+    <string name="comment">Comment</string>
+    <string name="update_source">Update source</string>
+    <string name="delete_source">Delete source</string>
 </resources>
