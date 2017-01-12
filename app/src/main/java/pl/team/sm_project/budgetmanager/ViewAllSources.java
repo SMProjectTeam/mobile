@@ -68,13 +68,13 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
                     value = "";
                 }
 
-                HashMap<String, String> budgets = new HashMap<>();
-                budgets.put(WebConfig.SOURCE_TAG_TYPE, type);
-                budgets.put(WebConfig.SOURCE_TAG_NAME, name);
-                budgets.put(WebConfig.SOURCE_TAG_VALUE, value);
-                budgets.put(WebConfig.SOURCE_TAG_COMMENT, comment);
+                HashMap<String, String> sources = new HashMap<>();
+                sources.put(WebConfig.SOURCE_TAG_TYPE, type);
+                sources.put(WebConfig.SOURCE_TAG_NAME, name);
+                sources.put(WebConfig.SOURCE_TAG_VALUE, value);
+                sources.put(WebConfig.SOURCE_TAG_COMMENT, comment);
 
-                list.add(budgets);
+                list.add(sources);
             }
 
         } catch (JSONException e) {
@@ -120,7 +120,7 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(this, ViewBudget.class);
+        Intent intent = new Intent(this, ViewSource.class);
         HashMap<String, String> map = (HashMap)parent.getItemAtPosition(position);
         String source_id = map.get(WebConfig.SOURCE_TAG_ID);
         intent.putExtra(WebConfig.SOURCE_ID, source_id);

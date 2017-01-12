@@ -1,13 +1,11 @@
 package pl.team.sm_project.budgetmanager;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,10 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +40,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
     private Button button_delete;
 
     private String id;
-    private String type;
+    private String type_id;
     private String source_id;
 
     private List<String> sources_names = new ArrayList<String>();
@@ -67,19 +62,18 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
         edit_spiner_source = (Spinner)findViewById(R.id.editBudgetSource);
         getSources();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sources_names);
-        edit_spiner_source.setAdapter(adapter);
         edit_spiner_source.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                 source_id = sources_ids.get(position);
+                Log.v("test", Integer.toString(position));
+                source_id = sources_ids.get(position);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-
             }
         });
-
+        edit_spiner_source.setAdapter(adapter);
 
         button_update = (Button) findViewById(R.id.buttonUpdate);
         button_delete = (Button) findViewById(R.id.buttonDelete);
@@ -165,7 +159,6 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -244,7 +237,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                 hash_map.put(WebConfig.KEY_BUDGET_ID, id);
                 hash_map.put(WebConfig.KEY_BUDGET_NAME, name);
                 hash_map.put(WebConfig.KEY_BUDGET_DATE, date);
-                hash_map.put(WebConfig.KEY_BUDGET_TYPE, type);
+                hash_map.put(WebConfig.KEY_BUDGET_TYPE, type_id);
                 hash_map.put(WebConfig.KEY_BUDGET_VALUE, value);
                 hash_map.put(WebConfig.KEY_BUDGET_SOURCE, source_id);
                 Log.v(WebConfig.KEY_BUDGET_ID, id);
@@ -252,7 +245,7 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                 Log.v(WebConfig.KEY_BUDGET_DATE, date);
                 Log.v(WebConfig.KEY_BUDGET_SOURCE, source_id);
                 Log.v(WebConfig.KEY_BUDGET_VALUE, value);
-                Log.v(WebConfig.KEY_BUDGET_TYPE, type);
+                Log.v(WebConfig.KEY_BUDGET_TYPE, type_id);
                 RequestHandler request_handler = new RequestHandler();
 
                 return request_handler.sendPostRequest(WebConfig.GLOBAL_URL + WebConfig.BUDGET_UPDATE, hash_map, id);
@@ -336,11 +329,11 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
         switch(view.getId()) {
             case R.id.radio_income:
                 if (checked)
-                    type = WebConfig.INCOME_ID;
+                    type_id = WebConfig.INCOME_ID;
                     break;
             case R.id.radio_expense:
                 if (checked)
-                    type = WebConfig.EXPENSE_ID;
+                    type_id = WebConfig.EXPENSE_ID;
                     break;
         }
     }
@@ -353,20 +346,19 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
         DatePickerFragment date = new DatePickerFragment();
         Calendar calender = Calendar.getInstance();
         Bundle args = new Bundle();
+
         args.putInt("year", calender.get(Calendar.YEAR));
         args.putInt("month", calender.get(Calendar.MONTH));
         args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
-        date.setArguments(args);
 
+        date.setArguments(args);
         date.setCallBack(ondate);
         date.show(getFragmentManager(), "Date Picker");
     }
 
     DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
-
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-
             edit_text_date.setText(String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)
                     + "-" + String.valueOf(year));
         }

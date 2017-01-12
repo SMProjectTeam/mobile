@@ -24,10 +24,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         EditText edit_text_email = (EditText) findViewById(R.id.editTextEmail);
         EditText edit_text_password = (EditText) findViewById(R.id.editTextPassword);
 
@@ -55,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == button_login){
+            startActivity(new Intent(this, ViewAllBudgets.class));
         }
     }
 }
