@@ -4,7 +4,7 @@
     <string name="date">Data</string>
     <string name="email">Email</string>
     <string name="graphs_action">Statystyki</string>
-    <string name="login">Login</string>
+    <string name="login">Zaloguj</string>
     <string name="logout_action">Wyloguj</string>
     <string name="password">Hasło</string>
     <string name="delete_budget">Usuń budżet</string>
@@ -20,4 +20,6 @@
     <string name="type">Typ</string>
     <string name="update_source">Aktualizuj źródło</string>
     <string name="value">Wartość</string>
+    <string name="przych_d">Przychód</string>
+    <string name="wydatek">Wydatek</string>
 </resources>

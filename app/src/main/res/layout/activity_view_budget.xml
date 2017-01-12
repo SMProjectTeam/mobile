@@ -46,7 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Value" />
+        android:text="@string/value" />
 
     <EditText
         android:inputType="numberDecimal"
@@ -64,7 +64,7 @@
         <RadioButton android:id="@+id/radio_income"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:text="Przychód"
+                     android:text="@string/przych_d"
                      android:onClick="onRadioButtonClicked"
             android:layout_weight="0.63"
             android:layout_marginRight="@dimen/activity_horizontal_margin" />
@@ -72,7 +72,7 @@
         <RadioButton android:id="@+id/radio_expense"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:text="Wydatek"
+                     android:text="@string/wydatek"
                      android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
 
@@ -86,7 +86,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comment" />
+        android:text="@string/comment" />
 
     <EditText
         android:inputType="textMultiLine"
@@ -98,12 +98,12 @@
         android:layout_width="fill_parent"
         android:scrollbars="vertical"
         android:id="@+id/editTextComment"
-        android:layout_weight="0.28" />
+        android:layout_weight="0.73" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update Budget"
+        android:text="@string/update_budget"
         android:id="@+id/buttonUpdate" />
 
 

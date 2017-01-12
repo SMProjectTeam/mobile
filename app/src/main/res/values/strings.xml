@@ -20,4 +20,6 @@
     <string name="comment">Comment</string>
     <string name="update_source">Update source</string>
     <string name="delete_source">Delete source</string>
+    <string name="przych_d">Income</string>
+    <string name="wydatek">Expense</string>
 </resources>

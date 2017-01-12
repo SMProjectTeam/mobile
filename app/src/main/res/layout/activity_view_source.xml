@@ -44,12 +44,12 @@
         <RadioButton android:id="@+id/radio_source_income"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:text="Przychód"
+                     android:text="@string/przych_d"
                      android:onClick="onRadioButtonClicked"/>
         <RadioButton android:id="@+id/radio_source_expense"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:text="Wydatek"
+                     android:text="@string/wydatek"
                      android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
 
