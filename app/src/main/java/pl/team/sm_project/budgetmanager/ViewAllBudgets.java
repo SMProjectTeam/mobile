@@ -144,6 +144,10 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
             startActivity(new Intent(this, ViewAllSources.class));
         }
 
+        if(id == R.id.action_logout) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

@@ -12,7 +12,6 @@
     <string name="budget_name">Nazwa budżetu</string>
     <string name="sources_action">Źródła</string>
     <string name="update_budget">Aktualizuj budżet</string>
-    <string name="title_activity_view_all_budgets">Zobacz wszystkie budżety</string>
     <string name="pick_date">Wybierz datę</string>
     <string name="comment">Komentarz</string>
     <string name="delete_source">Usuń źródło</string>
@@ -22,11 +21,12 @@
     <string name="value">Wartość</string>
     <string name="przych_d">Przychód</string>
     <string name="wydatek">Wydatek</string>
-    <string name="adding">Dodawanie...</string>
+    <string name="adding">Dodawanie…</string>
     <string name="Delete_confirm">Czy na pewno chcesz usunąć ten rekord?</string>
-    <string name="fetching">Wypełnianie...</string>
+    <string name="fetching">Wypełnianie…</string>
     <string name="no">Nie</string>
-    <string name="updating">Aktualizowanie...</string>
-    <string name="wait">Czekaj...</string>
+    <string name="updating">Aktualizowanie…</string>
+    <string name="wait">Czekaj…</string>
     <string name="yes">Tak</string>
+    <string name="logo">Logo</string>
 </resources>

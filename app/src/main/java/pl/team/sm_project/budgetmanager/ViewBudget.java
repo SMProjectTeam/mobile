@@ -141,10 +141,9 @@ public class ViewBudget extends AppCompatActivity implements View.OnClickListene
                 super.onPostExecute(response);
                 loading.dismiss();
                 JSONObject json_object;
-                String json_string = response;
 
                 try {
-                    json_object = new JSONObject(json_string);
+                    json_object = new JSONObject(response);
                     JSONArray result = json_object.getJSONArray(WebConfig.TAG_JSON_ARRAY);
 
                     for(int i = 0; i<result.length(); i++){

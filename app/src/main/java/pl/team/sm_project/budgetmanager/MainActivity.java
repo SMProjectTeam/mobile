@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        //int id = item.getItemId();
 
-        if(id == R.id.action_budgets) {
+        /*if(id == R.id.action_budgets) {
             startActivity(new Intent(this, ViewAllBudgets.class));
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
