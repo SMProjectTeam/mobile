@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
+import android.text.style.StrikethroughSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -89,13 +90,13 @@ public class StatsActivity extends AppCompatActivity implements OnChartValueSele
         l.setDrawInside(false);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(0f);
-        l.setYOffset(50f);
-        l.setTextSize(16f);
+        l.setYOffset(60f);
+        l.setTextSize(18f);
         l.setTextColor(Color.CYAN);
 
         // entry label styling
-        mChart.setEntryLabelColor(Color.BLUE);
-        mChart.setEntryLabelTextSize(14f);
+        mChart.setEntryLabelColor(Color.MAGENTA);
+        mChart.setEntryLabelTextSize(16f);
     }
 
     private SpannableString generateCenterSpannableText() {
@@ -150,7 +151,6 @@ public class StatsActivity extends AppCompatActivity implements OnChartValueSele
 
     private void showStats() {
         JSONObject json_object;
-
         ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
 
         try {
@@ -158,16 +158,15 @@ public class StatsActivity extends AppCompatActivity implements OnChartValueSele
 
             JSONArray result = json_object.getJSONArray(WebConfig.TAG_JSON_ARRAY);
 
-            Log.i("BM", "JSON array result length: " + result.length());
-
             for (int i = 0; i < result.length(); i++) {
                 JSONObject stat = result.getJSONObject(i);
+                JSONObject userrr = stat.getJSONObject("user");
 
                 Log.i("BM", "JSON stat in for loop: " + stat);
 
-                Log.i("BM", "sum from get: " + stat.get("sum"));
+                Object name = stat.getJSONObject("user").get("name");
 
-                entries.add(new PieEntry((float) stat.getDouble("sum")));
+                entries.add(new PieEntry((float) stat.getDouble("sum"), ((String) name)));
             }
         } catch (JSONException e) {
             e.printStackTrace();
