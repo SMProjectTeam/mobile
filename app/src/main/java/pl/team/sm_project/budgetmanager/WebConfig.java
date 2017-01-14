@@ -17,6 +17,8 @@ class WebConfig {
     public static final String SOURCE_UPDATE = "/api/source/edit/";
     public static final String SOURCE_DELETE = "/api/source/delete/";
 
+    public static final String STATS_GET_ALL = "/api/stats/json";
+
     public static final String KEY_BUDGET_ID = "id";
     public static final String KEY_BUDGET_NAME = "name";
     public static final String KEY_BUDGET_DATE = "date";

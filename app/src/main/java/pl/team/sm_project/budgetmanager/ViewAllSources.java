@@ -35,7 +35,7 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         list_view = (ListView) findViewById(R.id.listView);
         list_view.setOnItemClickListener(this);
@@ -143,6 +143,10 @@ public class ViewAllSources extends AppCompatActivity implements ListView.OnItem
 
         if(id == R.id.action_sources) {
             startActivity(new Intent(this, ViewAllSources.class));
+        }
+
+        if(id == R.id.action_graphs) {
+            startActivity(new Intent(this, StatsActivity.class));
         }
 
         if(id == R.id.action_logout) {

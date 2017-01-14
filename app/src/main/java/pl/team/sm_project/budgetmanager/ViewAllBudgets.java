@@ -35,7 +35,7 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         list_view = (ListView) findViewById(R.id.listView);
         list_view.setOnItemClickListener(this);
@@ -51,7 +51,7 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
             json_object = new JSONObject(json_string);
             JSONArray result = json_object.getJSONArray(WebConfig.TAG_JSON_ARRAY);
 
-            for(int i = 0; i<result.length(); i++){
+            for (int i = 0; i < result.length(); i++) {
                 JSONObject budget = result.getJSONObject(i);
                 JSONObject contentObject = budget.getJSONObject(WebConfig.BUDGET_TAG_TYPE);
                 String type = contentObject.getString("name");
@@ -90,7 +90,6 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
 
     private void getJSON() {
         class GetJSON extends AsyncTask<Void, Void, String> {
-
             ProgressDialog loading;
             @Override
             protected void onPreExecute() {
@@ -142,6 +141,10 @@ public class ViewAllBudgets extends AppCompatActivity implements ListView.OnItem
 
         if(id == R.id.action_sources) {
             startActivity(new Intent(this, ViewAllSources.class));
+        }
+
+        if(id == R.id.action_graphs) {
+            startActivity(new Intent(this, StatsActivity.class));
         }
 
         if(id == R.id.action_logout) {

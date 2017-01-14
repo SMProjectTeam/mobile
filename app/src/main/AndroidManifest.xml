@@ -26,6 +26,7 @@
 
         <activity android:name=".ViewAllSources" />
         <activity android:name=".ViewSource" />
+        <activity android:name=".StatsActivity" />
     </application>
 
 </manifest>
