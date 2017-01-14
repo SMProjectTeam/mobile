@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.StrikethroughSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,8 +57,6 @@ public class StatsActivity extends AppCompatActivity implements OnChartValueSele
 
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
-        mChart.setCenterText(generateCenterSpannableText());
-
         mChart.setDrawHoleEnabled(true);
         mChart.setHoleColor(Color.WHITE);
 
@@ -99,8 +96,8 @@ public class StatsActivity extends AppCompatActivity implements OnChartValueSele
         mChart.setEntryLabelTextSize(16f);
     }
 
-    private SpannableString generateCenterSpannableText() {
-        SpannableString s = new SpannableString("Budget Manager\nWydatki z podziałem na użytkowników");
+    private SpannableString generateCenterSpannableText(String title) {
+        SpannableString s = new SpannableString("Budget Manager\n" + title);
         s.setSpan(new RelativeSizeSpan(1.7f), 0, 14, 0);
 
         return s;
@@ -151,7 +148,7 @@ public class StatsActivity extends AppCompatActivity implements OnChartValueSele
 
     private void showStats() {
         JSONObject json_object;
-        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+        ArrayList<PieEntry> entries = new ArrayList<>();
 
         try {
             json_object = new JSONObject(json_string);
@@ -160,7 +157,6 @@ public class StatsActivity extends AppCompatActivity implements OnChartValueSele
 
             for (int i = 0; i < result.length(); i++) {
                 JSONObject stat = result.getJSONObject(i);
-                JSONObject userrr = stat.getJSONObject("user");
 
                 Log.i("BM", "JSON stat in for loop: " + stat);
 
@@ -172,13 +168,19 @@ public class StatsActivity extends AppCompatActivity implements OnChartValueSele
             e.printStackTrace();
         }
 
-        PieDataSet dataSet = new PieDataSet(entries, "Wydatki z podziałem na użytkowników");
+        setData(mChart, entries, getString(R.string.expenditures_by_users));
+    }
+
+    private void setData(PieChart chart, ArrayList<PieEntry> entries, String title) {
+        PieDataSet dataSet = new PieDataSet(entries, title);
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
 
+        chart.setCenterText(generateCenterSpannableText(title));
+
         // add a lot of colors
 
-        ArrayList<Integer> colors = new ArrayList<Integer>();
+        ArrayList<Integer> colors = new ArrayList<>();
 
         for (int c : ColorTemplate.VORDIPLOM_COLORS)
             colors.add(c);
@@ -203,12 +205,12 @@ public class StatsActivity extends AppCompatActivity implements OnChartValueSele
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.BLUE);
-        mChart.setData(data);
+        chart.setData(data);
 
         // undo all highlights
-        mChart.highlightValues(null);
+        chart.highlightValues(null);
 
-        mChart.invalidate();
+        chart.invalidate();
     }
 
     @Override

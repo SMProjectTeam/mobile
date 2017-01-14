@@ -29,4 +29,5 @@
     <string name="wait">Czekaj…</string>
     <string name="yes">Tak</string>
     <string name="logo">Logo</string>
+    <string name="expenditures_by_users">Wydatki z podziałem na użytkowników</string>
 </resources>
