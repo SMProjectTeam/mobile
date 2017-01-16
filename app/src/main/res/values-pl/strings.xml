@@ -30,4 +30,5 @@
     <string name="yes">Tak</string>
     <string name="logo">Logo</string>
     <string name="expenditures_by_users">Wydatki z podziałem na użytkowników</string>
+    <string name="expenditures_by_sources">Wydatki z podziałem na źródła</string>
 </resources>

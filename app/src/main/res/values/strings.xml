@@ -30,4 +30,5 @@
     <string name="adding">Adding…</string>
     <string name="logo">Logo</string>
     <string name="expenditures_by_users">Expenditures by users</string>
+    <string name="expenditures_by_sources">Expenditures by sources</string>
 </resources>
